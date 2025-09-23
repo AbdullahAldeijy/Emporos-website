@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    
+    <link rel="icon" type="image/png" href="../images/Emporos-logo1.png">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emporos</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/technologies.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- <link rel="stylesheet" href="../css/scs-loading.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        // Check for language switch flag before loading any scripts
+        if (sessionStorage.getItem('language-switch') === 'true') {
+            document.documentElement.style.visibility = 'visible';
+            sessionStorage.removeItem('language-switch');
+        }
+
+    
+        // Add additional circles and floating effect
+        // Use requestAnimationFrame for ultra-smooth floating animation
+        function startSmoothFloat() {
+            const cloud = document.getElementById('cloud-img');
+            const koth = document.getElementById('koth-img');
+            if (!cloud || !koth) return;
+            let start = null;
+            // Offset values to move images further up (smaller/more negative = higher)
+            const cloudBaseOffset = -60; // adjust this value to move cloud up or down
+            const kothBaseOffset = -75;  // adjust this value to move koth up or down
+            function animate(ts) {
+                if (!start) start = ts;
+                const elapsed = (ts - start) / 1000;
+                // Cloud floats up and down
+                const cloudY = Math.sin(elapsed * 2 * Math.PI / 3.5) * 5;
+                cloud.style.transform = `translateX(-50%) translateY(${cloudBaseOffset + cloudY}px)`;
+                // Koth floats with a phase offset
+                const kothY = Math.sin((elapsed + 0.5) * 2 * Math.PI / 4.5) * 2;
+                koth.style.transform = `translateX(-50%) translateY(${kothBaseOffset + kothY}px)`;
+                requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            startSmoothFloat();
+            // Loop the animation forever (overlay always visible)
+            document.getElementById('scs-loading-overlay').style.display = 'flex';
+        });
+        // getFloatOffset is no longer needed
+    
+    </script>
+    <!-- <script src="../js/scs-loading.js"></script> -->
+    <style>
+        /* English-specific styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: left;
+        }
+        /* Spinner for image loading */
+        .img-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .img-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0072C6;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+        /* Hide spinner when image is loaded */
+        .img-loaded + .img-spinner {
+            display: none !important;
+        }
+        .language-selector {
+            margin-left: 20px;
+        }
+        nav ul {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline-block;
+        }
+        nav ul li a {
+            font-size: 0.85em !important;
+            padding: 8px 14px !important;
+            display: inline-block;
+        }
+        .providers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            margin-top: 32px;
+        }
+        .provider-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 32px 24px 24px 24px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 260px;
+        }
+        .provider-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+        }
+        .provider-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            font-size: 2.7em;
+            color: #0072C6;
+        }
+        .provider-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .provider-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #222;
+        }
+        .provider-description {
+            font-size: 1em;
+            color: #555;
+        }
+        /* Center tech images in Technologies & Tools section */
+        .tech-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px auto;
+        }
+        .tech-img {
+            display: block;
+            margin: 0 auto;
+            max-width: 48px;
+            max-height: 48px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container" id="logo-container" style="cursor:pointer;">
+                <img src="../images/Emporos-logo1.png" alt="Lunixa Cloud Solutions Logo" class="logo-img">
+                <div class="header-content">
+                    <div class="company-names">
+                        <div class="company-name">
+                            <span>Emporos</span>
+                            <span>Driving</span>
+                            <span>Growth</span>
+                        </div>
+                        <div class="company-name arabic">
+                            <span>إمبوروس</span>
+                            <span>وساطة</span>
+                            <span>نمو</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="vertical-divider"></div>
+                <img src="../images/Rwanda-vision.png" alt="Vision 2030" class="vision2030">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="home-link">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#technologies">SaaS Services</a></li>
+                    <li><a href="#cloud-providers">Our core values</a></li>
+                    <li><a href="#who-we-are">Who Are We</a></li>
+                    <li><a href="#why-work-with-us">Why Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <a href="/ar" class="language-switcher language-link">العربية</a>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Loading overlay and related functionality removed -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Bridging, Driving Growth</h1>
+                <p>Connecting Bussinesses with customers, Driving Growth</p>
+                <a href="#services" class="btn">Explore Our Services</a>
+            </div>
+        </div>
+    </section>
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Car Rentals</h3>
+                    <p>Making mobility easier by connecting customers with reliable car rental services. We bridge the gap between car rental providers and customers, ensuring seamless booking experiences and quality service delivery.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Real Estate</h3>
+                    <p>Bridging the gap between property owners, investors, and clients looking for the right spaces. We facilitate connections that lead to successful property transactions and investment opportunities.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Employment Solutions</h3>
+                    <p>Helping individuals find the right jobs while supporting businesses in hiring the right talent. We create meaningful connections between job seekers and employers for mutual success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technologies">
+        <div class="container">
+            <h2>SaaS Services – Coming Soon</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <h3 class="tech-name">Smart Invoicing</h3>
+                    <p class="tech-description">Create, send, and track invoices in just a few clicks. Say goodbye to paper and manage your payments with ease.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <img src="../images/Emporos-logo1.png" alt="Ansible" class="tech-img">
+                    </div>
+                    <h3 class="tech-name">Simple CRM</h3>
+                    <p class="tech-description">Keep all your customers in one place. Track leads, follow up easily, and grow your business relationships.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <img src="../images/Emporos-logo1.png" alt="Terraform" class="tech-img">
+                    </div>
+                    <h3 class="tech-name">Easy Inventory</h3>
+                    <p class="tech-description">Monitor your stock in real-time. Get alerts when items are running low and track your best-selling products.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3 class="tech-name">Point of Sale (POS)</h3>
+                    <p class="tech-description">Fast, simple, and reliable checkout system. Print receipts instantly and sync sales with your inventory.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <img src="../images/Emporos-logo1.png" alt="Kubernetes" class="tech-img">
+                    </div>
+                    <h3 class="tech-name">Online Booking</h3>
+                    <p class="tech-description">Let your customers book appointments online anytime. Manage schedules and send reminders automatically.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-jenkins"></i>
+                    </div>
+                    <h3 class="tech-name">Business Dashboard</h3>
+                    <p class="tech-description">Stay on top of your numbers. View sales, expenses, and performance insights in one simple dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="section-divider"></div>
+    <section id="cloud-providers">
+        <div class="container">
+            <h2 class="section-title">Our core values</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <h3 class="tech-name">Trust & Integrity</h3>
+                    <p class="tech-description">We build lasting relationships by being transparent, reliable, and committed to ethical practices.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <h3 class="tech-name">Innovation & Growth</h3>
+                    <p class="tech-description">We continuously evolve to create new opportunities that drive progress for businesses and communities.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3 class="tech-name">Customer-Centered Excellence</h3>
+                    <p class="tech-description">We prioritize delivering value and satisfaction to ensure success for both clients and service providers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="who-we-are">
+        <div class="container">
+            <h2>Who Are We</h2>
+            <div class="who-we-are-content">
+                <p>Emporos is a dynamic sales growth company dedicated to helping businesses reach their customers and expand their opportunities. We create strong connections between service providers and clients by building trust, delivering value, and ensuring growth for both sides.</p>
+                <p>We operate in three key sectors: Car Rentals, Real Estate, and Employment Solutions. In each sector, we focus on making meaningful connections that drive business growth and customer satisfaction.</p>
+                <p>Emporos is committed to growth, innovation, and service excellence. By linking businesses directly to their customers, we empower communities and create pathways for sustainable success.</p>
+                <p>Our mission is to be the bridge that connects opportunities with the right people, fostering relationships that benefit everyone involved and contribute to economic growth in our communities.</p>
+            </div>
+        </div>
+    </section>
+
+    
+<section id="why-work-with-us">
+  <div class="container">
+    <h2>Why Work With Us</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>1. Proven Connection Builder</h3>
+        <p>
+          We excel at creating meaningful connections between businesses and customers. Our expertise in building trust and facilitating relationships ensures successful outcomes for all parties involved.
+        </p>
+      </div>
+      <div class="why-card">
+        <h3>2. Multi-Sector Expertise</h3>
+        <p>
+          With deep knowledge across Car Rentals, Real Estate, and Employment Solutions, we understand the unique challenges and opportunities in each sector, allowing us to provide tailored growth strategies.
+        </p>
+      </div>
+      <div class="why-card">
+        <h3>3. Growth-Focused Approach</h3>
+        <p>
+          We don’t disappear after deployment. We provide ongoing management,
+          We don't just make connections – we drive growth. Our strategies are designed to expand your customer base, increase revenue, and create sustainable business opportunities.
+        </p>
+      </div>
+      <div class="why-card">
+        <h3>4. Value for All Parties</h3>
+        <p>
+          We ensure that every connection we facilitate delivers value to both service providers and customers, creating win-win situations that foster long-term relationships and repeat business.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+    <section id="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-buttons" style="display: flex; justify-content: center; gap: 30px; margin-top: 40px;">
+                <a href="https://wa.me/971525834426" target="_blank" class="contact-btn whatsapp-btn external-link" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 8px; background: linear-gradient(90deg, #25D366 60%, #128C7E 100%); color: #fff; font-size: 1.2rem; font-weight: 600; box-shadow: 0 4px 24px rgba(37,211,102,0.15); transition: transform 0.2s, box-shadow 0.2s; animation: float 2.5s infinite; text-decoration: none;">
+                    <i class="fab fa-whatsapp" style="font-size: 1.5em;"></i>
+                    WhatsApp
+                </a>
+                <a href="mailto:team@emporos.com" target="_blank" class="contact-btn email-btn external-link" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 8px; background: linear-gradient(90deg, #0072C6 60%, #005999 100%); color: #fff; font-size: 1.2rem; font-weight: 600; box-shadow: 0 4px 24px rgba(0,114,198,0.15); transition: transform 0.2s, box-shadow 0.2s; animation: float 2.5s 0.5s infinite; text-decoration: none;">
+                    <i class="fas fa-envelope" style="font-size: 1.5em;"></i>
+                    Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-container footer-logo-container">
+                        <img src="../images/Emporos-logo1.png" alt="SCS Logo" class="logo-img">
+                        <div class="header-content">
+                            <div class="company-names">
+                                <div class="company-name">
+                                    <span>Emporos</span>
+                                    <span>Driving</span>
+                                    <span>Growth</span>
+                                </div>
+                                <div class="company-name arabic">
+                                    <span>إمبوروس</span>
+                                    <span>وساطة</span>
+                                    <span>نمو</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="tagline">Emporos Bridging, driving growth</p>
+                    <p class="footer-description">Your trusted partner for connecting your company with customers, Driving growth.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#technologies">Technologies & Tools</a></li>
+                        <li><a href="#cloud-providers">Cloud Providers</a></li>
+                        <li><a href="#who-we-are">Who Are We</a></li>
+                        <li><a href="#why-work-with-us">Why Work With Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Rawanda, Kigali</li>
+                        <li><i class="fas fa-phone"></i> +971525834426 </li>
+                        <li><i class="fas fa-envelope"></i> team@emporos.com </li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="footer-social">
+                        <div class="social-icons">
+                        <a href="https://www.instagram.com/emporos.25/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Emporos. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <!-- Removed tech-circles.js as it's no longer needed with the new grid layout -->
+    <script>
+// --- Loading overlay for new users only ---
+// Loading overlay and related functionality removed
+
+// ...existing code...
+document.querySelectorAll('.home-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
+const logoContainer = document.getElementById('logo-container');
+if (logoContainer) {
+    logoContainer.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+// On page load, if path is /en or /ar (no hash), scroll to top/home section
+document.addEventListener('DOMContentLoaded', function() {
+    if ((window.location.pathname.endsWith('/en') || window.location.pathname.endsWith('/ar')) && !window.location.hash) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+});
+// Spinner for all images (including PNGs)
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(function(img) {
+        // Skip if already wrapped
+        if (img.parentElement && img.parentElement.classList.contains('img-wrapper')) return;
+        // Create wrapper
+        var wrapper = document.createElement('div');
+        wrapper.className = 'img-wrapper';
+        img.parentNode.insertBefore(wrapper, img);
+        wrapper.appendChild(img);
+        // Create spinner
+        var spinner = document.createElement('div');
+        spinner.className = 'img-spinner';
+        spinner.innerHTML = '<div class="spinner"></div>';
+        wrapper.appendChild(spinner);
+        // Show spinner by default
+        spinner.style.display = 'flex';
+        // Hide spinner on load
+        img.addEventListener('load', function() {
+            img.classList.add('img-loaded');
+            spinner.style.display = 'none';
+        });
+        // Show error icon on error
+        img.addEventListener('error', function() {
+            spinner.innerHTML = '<span style="color:red;font-size:1.5em;">⚠</span>';
+            spinner.style.display = 'flex';
+        });
+        // If already loaded (from cache)
+        if (img.complete && img.naturalWidth !== 0) {
+            img.classList.add('img-loaded');
+            spinner.style.display = 'none';
+        }
+    });
+});
+    </script>
+</body>
+</html>

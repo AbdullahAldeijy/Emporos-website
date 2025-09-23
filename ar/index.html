@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../images/logo4.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunixa Cloud Solutions</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/technologies.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- <link rel="stylesheet" href="../css/lcs-loading.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Add Google Fonts for Arabic support -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Check for language switch flag before loading any scripts
+        if (sessionStorage.getItem('language-switch') === 'true') {
+            document.documentElement.style.visibility = 'visible';
+            sessionStorage.removeItem('language-switch');
+        }
+    </script>
+    <style>
+        /* Arabic-specific styles */
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: right;
+        }
+        /* Spinner for image loading */
+        .img-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .img-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0072C6;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+        /* Hide spinner when image is loaded */
+        .img-loaded + .img-spinner {
+            display: none !important;
+        }
+        /* Center tech images in Technologies & Tools section */
+        .tech-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px auto;
+        }
+        .tech-img {
+            display: block;
+            margin: 0 auto;
+            max-width: 48px;
+            max-height: 48px;
+            object-fit: contain;
+        }
+        nav ul {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    nav ul li {
+        display: inline-block;
+    }
+    nav ul li a {
+        font-size: 0.85em !important;
+        padding: 8px 14px !important;
+        display: inline-block;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container" id="logo-container" style="cursor:pointer;">
+                <img src="../images/logo2.png" alt="لونيكسا كلاود سوليوشنز" class="logo-img">
+                <div class="header-content">
+                    <div class="company-names">
+                        <div class="company-name">
+                            <span>لونيكسا</span>
+                            <span>للحلول</span>
+                            <span>السحابية</span>
+                        </div>
+                        <div class="company-name english">
+                            <span>Lunixa</span>
+                            <span>Cloud</span>
+                            <span>Solutions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="vertical-divider"></div>
+                <img src="../images/vision2030-w.svg" alt="رؤية 2030" class="vision2030">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#hero" class="home-link">الرئيسية</a></li>
+                    <li><a href="#services">الخدمات</a></li>
+                    <li><a href="#technologies">التقنيات والأدوات</a></li>
+                    <li><a href="#cloud-providers">مزودو السحابة</a></li>
+                    <li><a href="#who-we-are">من نحن</a></li>
+                    <li><a href="#why-work-with-us">لماذا نحن</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <a href="/en" class="language-switcher language-link">English</a>
+            </div>
+            <!-- Removed mobile menu toggle (three dashes/hamburger icon) -->
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>خليها على السحابة</h1>
+                <p>تحويل الأعمال من خلال حلول سحابية مبتكرة</p>
+                <a href="#services" class="btn">استكشف خدماتنا</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>خدماتنا</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>تأجير السيارات</h3>
+                    <p>نجعل التنقل أسهل من خلال ربط العملاء بخدمات تأجير السيارات الموثوقة. نحن نسد الفجوة بين مقدمي خدمات تأجير السيارات والعملاء، مما يضمن تجارب حجز سلسة وتقديم خدمة عالية الجودة.</p>
+                </div>
+                <div class="service-card">
+                    <h3>العقارات</h3>
+                    <p>سد الفجوة بين مالكي العقارات والمستثمرين والعملاء الذين يبحثون عن المساحات المناسبة. نحن نسهل الاتصالات التي تؤدي إلى معاملات عقارية ناجحة وفرص استثمارية.</p>
+                </div>
+                <div class="service-card">
+                    <h3>حلول التوظيف</h3>
+                    <p>مساعدة الأفراد في العثور على الوظائف المناسبة مع دعم الشركات في توظيف المواهب المناسبة. نحن ننشئ اتصالات هادفة بين الباحثين عن عمل وأصحاب العمل من أجل النجاح المتبادل.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technologies">
+        <div class="container">
+            <h2>التقنيات والأدوات التي نعمل بها</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <h3 class="tech-name">Docker</h3>
+                    <p class="tech-description">منصة حاويات تتيح تشغيل التطبيقات بشكل متسق عبر البيئات المختلفة.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <img src="../images/ansible.png" alt="Ansible" class="tech-img">
+                    </div>
+                    <h3 class="tech-name">Ansible</h3>
+                    <p class="tech-description">أداة أتمتة لإدارة التهيئة ونشر التطبيقات وتنفيذ المهام تلقائيًا.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <img src="../images/terraform.png" alt="Terraform" class="tech-img">
+                    </div>
+                    <h3 class="tech-name">Terraform</h3>
+                    <p class="tech-description">أداة بنية تحتية كرمز لبناء وتغيير وإدارة البنية التحتية بأمان وكفاءة.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3 class="tech-name">Git & GitHub</h3>
+                    <p class="tech-description">منصة لإدارة الإصدارات والتعاون في مشاريع تطوير البرمجيات.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <img src="../images/kubernetes.png" alt="Kubernetes" class="tech-img">
+                    </div>
+                    <h3 class="tech-name">Kubernetes</h3>
+                    <p class="tech-description">نظام مفتوح المصدر لأتمتة نشر وإدارة التطبيقات الحاوية.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-jenkins"></i>
+                    </div>
+                    <h3 class="tech-name">Jenkins</h3>
+                    <p class="tech-description">خادم أتمتة لبناء واختبار ونشر البرمجيات بشكل مستمر.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3 class="tech-name">GitHub Actions</h3>
+                    <p class="tech-description">أداة أتمتة سير العمل CI/CD مدمجة في GitHub لتسهيل عمليات البناء والاختبار والنشر.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="section-divider"></div>
+    <section id="cloud-providers">
+        <div class="container">
+            <h2 class="section-title">مزودو الخدمات السحابية الذين نعمل معهم</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <h3 class="tech-name">AWS</h3>
+                    <p class="tech-description">منصة سحابية رائدة تقدم أكثر من 200 خدمة كاملة من مراكز بيانات عالمية.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <h3 class="tech-name">Azure</h3>
+                    <p class="tech-description">خدمة الحوسبة السحابية من مايكروسوفت لبناء واختبار ونشر وإدارة التطبيقات.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3 class="tech-name">Google Cloud</h3>
+                    <p class="tech-description">مجموعة من خدمات الحوسبة السحابية تعمل على نفس البنية التحتية التي تستخدمها Google داخليًا.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <img src="../images/alibaba.png" alt="Alibaba Cloud" class="tech-img">
+                    </div>
+                    <h3 class="tech-name">Alibaba Cloud</h3>
+                    <p class="tech-description">مجموعة شاملة من خدمات الحوسبة السحابية العالمية لدعم أعمالك.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="who-we-are">
+        <div class="container">
+            <h2>من نحن</h2>
+            <div class="who-we-are-content">
+                <p>إمبوروس هي شركة نمو مبيعات ديناميكية مكرسة لمساعدة الشركات في الوصول إلى عملائها وتوسيع فرصها. نحن ننشئ روابط قوية بين مقدمي الخدمات والعملاء من خلال بناء الثقة وتقديم القيمة وضمان النمو للجانبين.</p>
+                <p>نحن نعمل في ثلاثة قطاعات رئيسية: تأجير السيارات، والعقارات، وحلول التوظيف. في كل قطاع، نركز على إنشاء اتصالات هادفة تدفع نمو الأعمال ورضا العملاء.</p>
+                <p>إمبوروس ملتزمة بالنمو والابتكار والتميز في الخدمة. من خلال ربط الشركات مباشرة بعملائها، نحن نمكّن المجتمعات وننشئ مسارات للنجاح المستدام.</p>
+                <p>مهمتنا هي أن نكون الجسر الذي يربط الفرص بالأشخاص المناسبين، وتعزيز العلاقات التي تفيد جميع الأطراف المعنية وتساهم في النمو الاقتصادي في مجتمعاتنا.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="why-work-with-us">
+  <div class="container">
+    <h2>لماذا تعمل معنا</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>1. بناء اتصالات مثبتة</h3>
+        <p>
+          نحن نتفوق في إنشاء اتصالات هادفة بين الشركات والعملاء. خبرتنا في بناء الثقة وتسهيل العلاقات تضمن نتائج ناجحة لجميع الأطراف المعنية.
+        </p>
+      </div>
+      <div class="why-card">
+        <h3>2. خبرة متعددة القطاعات</h3>
+        <p>
+          مع معرفة عميقة في تأجير السيارات والعقارات وحلول التوظيف، نحن نفهم التحديات والفرص الفريدة في كل قطاع، مما يمكننا من تقديم استراتيجيات نمو مخصصة.
+        </p>
+      </div>
+      <div class="why-card">
+        <h3>3. نهج مركز على النمو</h3>
+        <p>
+          نحن لا نكتفي بإنشاء الاتصالات – بل ندفع النمو. استراتيجياتنا مصممة لتوسيع قاعدة عملائك وزيادة الإيرادات وخلق فرص عمل مستدامة.
+        </p>
+      </div>
+      <div class="why-card">
+        <h3>4. قيمة لجميع الأطراف</h3>
+        <p>
+          نحن نضمن أن كل اتصال نسهله يقدم قيمة لمقدمي الخدمات والعملاء على حد سواء، مما يخلق مواقف مربحة للجميع تعزز العلاقات طويلة المدى والأعمال المتكررة.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>تواصل معنا</h2>
+            <div class="contact-buttons" style="display: flex; justify-content: center; gap: 30px; margin-top: 40px;">
+                <a href="https://wa.me/966581061426" target="_blank" class="contact-btn whatsapp-btn external-link" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 8px; background: linear-gradient(90deg, #25D366 60%, #128C7E 100%); color: #fff; font-size: 1.2rem; font-weight: 600; box-shadow: 0 4px 24px rgba(37,211,102,0.15); transition: transform 0.2s, box-shadow 0.2s; animation: float 2.5s infinite; text-decoration: none;">
+                    <i class="fab fa-whatsapp" style="font-size: 1.5em;"></i>
+                    واتساب
+                </a>
+                <a href="mailto:team@lunixa.sa" target="_blank" class="contact-btn email-btn external-link" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 8px; background: linear-gradient(90deg, #0072C6 60%, #005999 100%); color: #fff; font-size: 1.2rem; font-weight: 600; box-shadow: 0 4px 24px rgba(0,114,198,0.15); transition: transform 0.2s, box-shadow 0.2s; animation: float 2.5s 0.5s infinite; text-decoration: none;">
+                    <i class="fas fa-envelope" style="font-size: 1.5em;"></i>
+                    البريد الإلكتروني
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-container footer-logo-container">
+                        <img src="../images/logo2.png" alt="LCS Logo" class="logo-img">
+                        <div class="header-content">
+                            <div class="company-names">
+                                <div class="company-name arabic">
+                                    <span>لونيكسا</span>
+                                    <span>للحلول</span>
+                                    <span>السحابية</span>
+                                </div>
+                                <div class="company-name">
+                                    <span>Lunixa</span>
+                                    <span>Cloud</span>
+                                    <span>Solutions</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="tagline">حافظ على سحابتك مع LCS</p>
+                    <p class="footer-description">شريكك الموثوق للحلول السحابية المبتكرة في الرياض، المملكة العربية السعودية وخارجها.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#hero">الرئيسية</a></li>
+                        <li><a href="#services">الخدمات</a></li>
+                        <li><a href="#technologies">التقنيات والأدوات</a></li>
+                        <li><a href="#cloud-providers">مزودو السحابة</a></li>
+                        <li><a href="#who-we-are">من نحن</a></li>
+                        <li><a href="#why-work-with-us">لماذا نحن</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>معلومات الاتصال</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-phone"></i> ٠٥٨١٠٦١٤٢٦ </li>
+                        <li><i class="fas fa-envelope"></i> team@lunixa.sa </li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>تواصل معنا</h3>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/company/lunixacloud" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/lunixacloud" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fab fa-x"></i></a>
+                        <a href="https://www.instagram.com/lunixacloud/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 لونيكسا للحلول السحابية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCS Loading Overlay (Arabic, same as EN version) -->
+    <!-- Loading overlay and related functionality removed -->
+
+</script>
+</body>
+</html>

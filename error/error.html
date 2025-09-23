@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-color: #003459;
+        }
+    </style>
+</head>
+<body>
+    <div class="scs-loading-overlay" id="scs-loading-overlay" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh;">
+        <div class="scs-logo-container" style="margin-bottom: 32px; margin-left: 0;">
+            <img src="../images/cloud.png" alt="Cloud" class="scs-cloud-img animated-cloud" id="cloud-img">
+            <img src="../images/koth.png" alt="Mountains" class="scs-mountain-img animated-koth" id="koth-img">
+        </div>
+        <div id="error-message" style="text-align: center; color: #fff; font-size: 2.2rem; font-weight: 700; margin: 0; line-height: 1.3; background: rgba(0,52,89,0.85); box-shadow: 0 8px 32px rgba(0,0,0,0.18); border-radius: 18px; padding: 32px 36px 24px 36px; max-width: 420px; backdrop-filter: blur(6px); border: 1.5px solid rgba(255,255,255,0.13); letter-spacing: 0.01em; margin-top: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 10px; width: 100%;">
+                <i class="fas fa-ban" style="color: #ff4c4c; font-size: 2.1rem;"></i>
+                <span id="error-anim-text" style="display: inline-block; min-width: 120px; position: relative;">
+                    <span class="error-en" style="opacity: 1; transition: opacity 0.4s; color: #4a90e2; font-weight: 800; text-shadow: 0 2px 8px rgba(74,144,226,0.18);">Error</span>
+                    <span class="error-bar" style="display: inline-block; width: 18px; text-align: center; color: #d9b38c; font-weight: 900; font-size: 1.2em; text-shadow: 0 2px 8px rgba(217,179,140,0.18);"> | </span>
+                    <span class="error-ar" style="opacity: 0; transition: opacity 0.4s; color: #d9b38c; font-weight: 800; text-shadow: 0 2px 8px rgba(217,179,140,0.18);">خطأ</span>
+                </span>
+            </div>
+            <script>
+            // Animation for Error | خطأ wipe effect
+            document.addEventListener('DOMContentLoaded', function() {
+                const en = document.querySelector('.error-en');
+                const ar = document.querySelector('.error-ar');
+                const bar = document.querySelector('.error-bar');
+                let showingEn = true;
+                function animateErrorText() {
+                    // Wipe out EN
+                    en.style.opacity = '1';
+                    ar.style.opacity = '0';
+                    bar.style.opacity = '1';
+                    setTimeout(() => {
+                        en.style.opacity = '0';
+                        bar.style.opacity = '0';
+                        setTimeout(() => {
+                            // Wipe in AR
+                            ar.style.opacity = '1';
+                            bar.style.opacity = '1';
+                            setTimeout(() => {
+                                ar.style.opacity = '0';
+                                bar.style.opacity = '0';
+                                setTimeout(animateErrorText, 500);
+                            }, 1200);
+                        }, 400);
+                    }, 1200);
+                }
+                animateErrorText();
+            });
+            </script>
+            <div style="margin-top: 18px; font-size: 1.05rem; color: #b0c4d8; font-weight: 400;">
+                This page is unreachable or does not exist<br>
+                الصفحة غير متاحة أو غير موجودة
+            </div>
+            <a href="/en" style="display: inline-block; margin-top: 28px; padding: 12px 32px; background: linear-gradient(90deg, #0072C6 60%, #005999 100%); color: #fff; border-radius: 8px; font-size: 1.1rem; font-weight: 600; text-decoration: none; box-shadow: 0 2px 12px rgba(0,114,198,0.13); transition: background 0.2s, box-shadow 0.2s;">Go to Home</a>
+        </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        // Add additional circles and floating effect
+        // Use requestAnimationFrame for ultra-smooth floating animation
+        function startSmoothFloat() {
+            const cloud = document.getElementById('cloud-img');
+            const koth = document.getElementById('koth-img');
+            if (!cloud || !koth) return;
+            let start = null;
+            function animate(ts) {
+                if (!start) start = ts;
+                const elapsed = (ts - start) / 1000;
+                // Cloud floats up and down
+                const cloudY = Math.sin(elapsed * 2 * Math.PI / 3.5) * 5;
+                cloud.style.transform = `translateX(-50%) translateY(${cloudY}px)`;
+                // Koth floats with a phase offset
+                const kothY = Math.sin((elapsed + 0.5) * 2 * Math.PI / 4.5) * 9;
+                koth.style.transform = `translateX(-50%) translateY(${kothY}px)`;
+                requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            startSmoothFloat();
+            // Loop the animation forever (overlay always visible)
+            document.getElementById('scs-loading-overlay').style.display = 'flex';
+        });
+        // getFloatOffset is no longer needed
+    </script>
+</body>
+</html>
