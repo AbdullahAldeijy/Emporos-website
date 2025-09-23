@@ -1,4 +1,4 @@
-# Saudi Cloud Solutions (SCS) Website
+#  (Emporos) Website
 
 This repository contains the code for the Emporos website, a fully responsive website that works across all device sizes.
 
