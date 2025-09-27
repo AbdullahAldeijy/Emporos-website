@@ -1,29 +1,62 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    
+    <link rel="icon" type="image/png" href="../images/Emporos-logo1.png">
+
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="../images/logo4.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lunixa Cloud Solutions</title>
+    <title>إمبوروس</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/technologies.css">
     <link rel="stylesheet" href="../css/responsive.css">
-    <!-- <link rel="stylesheet" href="../css/lcs-loading.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Add Google Fonts for Arabic support -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         // Check for language switch flag before loading any scripts
         if (sessionStorage.getItem('language-switch') === 'true') {
             document.documentElement.style.visibility = 'visible';
             sessionStorage.removeItem('language-switch');
         }
+
+        // Add additional circles and floating effect
+        function startSmoothFloat() {
+            const cloud = document.getElementById('cloud-img');
+            const koth = document.getElementById('koth-img');
+            if (!cloud || !koth) return;
+            let start = null;
+            const cloudBaseOffset = -60; 
+            const kothBaseOffset = -75; 
+            function animate(ts) {
+                if (!start) start = ts;
+                const elapsed = (ts - start) / 1000;
+                const cloudY = Math.sin(elapsed * 2 * Math.PI / 3.5) * 5;
+                cloud.style.transform = `translateX(-50%) translateY(${cloudBaseOffset + cloudY}px)`;
+                const kothY = Math.sin((elapsed + 0.5) * 2 * Math.PI / 4.5) * 2;
+                koth.style.transform = `translateX(-50%) translateY(${kothBaseOffset + kothY}px)`;
+                requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Note: Removed the floating animation call since the elements it targets (cloud-img, koth-img) 
+            // were not included in the main body content you provided.
+            // startSmoothFloat(); 
+
+            // Loop the animation forever (overlay always visible)
+            // Note: Assuming 'scs-loading-overlay' is defined in styles.css and we want it hidden
+            const loadingOverlay = document.getElementById('scs-loading-overlay');
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'none'; 
+            }
+        });
+    
     </script>
     <style>
-        /* Arabic-specific styles */
+        /* Arabic-specific styles: RTL changes */
         body {
-            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: right;
+            /* Using a common Arabic font */
+            font-family: 'Almarai', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: right; /* Align text to the right for RTL */
         }
         /* Spinner for image loading */
         .img-wrapper {
@@ -56,6 +89,75 @@
         .img-loaded + .img-spinner {
             display: none !important;
         }
+        .language-selector {
+            margin-right: 20px; /* Change margin-left to margin-right for RTL */
+            margin-left: 0;
+        }
+        nav ul {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline-block;
+        }
+        nav ul li a {
+            font-size: 0.85em !important;
+            padding: 8px 14px !important;
+            display: inline-block;
+        }
+        .providers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            margin-top: 32px;
+        }
+        .provider-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 32px 24px 24px 24px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 260px;
+        }
+        .provider-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+        }
+        .provider-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            font-size: 2.7em;
+            color: #0072C6;
+        }
+        .provider-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .provider-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #222;
+        }
+        .provider-description {
+            font-size: 1em;
+            color: #555;
+        }
         /* Center tech images in Technologies & Tools section */
         .tech-icon-wrapper {
             width: 56px;
@@ -72,91 +174,74 @@
             max-height: 48px;
             object-fit: contain;
         }
-        nav ul {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-        justify-content: center;
-        align-items: center;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    nav ul li {
-        display: inline-block;
-    }
-    nav ul li a {
-        font-size: 0.85em !important;
-        padding: 8px 14px !important;
-        display: inline-block;
-    }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="logo-container" id="logo-container" style="cursor:pointer;">
-                <img src="../images/logo2.png" alt="لونيكسا كلاود سوليوشنز" class="logo-img">
+                <img src="../images/Emporos-logo1.png" alt="شعار إمبوروس لحلول السحابة" class="logo-img">
                 <div class="header-content">
                     <div class="company-names">
-                        <div class="company-name">
-                            <span>لونيكسا</span>
-                            <span>للحلول</span>
-                            <span>السحابية</span>
+                        <div class="company-name" style="display:none;"> 
+                            <span>Emporos</span>
+                            <span>Driving</span>
+                            <span>Growth</span>
                         </div>
-                        <div class="company-name english">
-                            <span>Lunixa</span>
-                            <span>Cloud</span>
-                            <span>Solutions</span>
+                        <div class="company-name arabic">
+                            <span>إمبوروس</span>
+                            <span>وساطة</span>
+                            <span>نمو</span>
                         </div>
                     </div>
                 </div>
                 <div class="vertical-divider"></div>
-                <img src="../images/vision2030-w.svg" alt="رؤية 2030" class="vision2030">
+                <img src="../images/Rwanda-vision.png" alt="رؤية 2030" class="vision2030">
             </div>
             <nav>
                 <ul>
                     <li><a href="#hero" class="home-link">الرئيسية</a></li>
-                    <li><a href="#services">الخدمات</a></li>
-                    <li><a href="#technologies">التقنيات والأدوات</a></li>
-                    <li><a href="#cloud-providers">مزودو السحابة</a></li>
+                    <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#technologies">خدمات SaaS (قريباً)</a></li>
+                    <li><a href="#cloud-providers">قيمنا الأساسية</a></li>
                     <li><a href="#who-we-are">من نحن</a></li>
                     <li><a href="#why-work-with-us">لماذا نحن</a></li>
                     <li><a href="#contact">تواصل معنا</a></li>
                 </ul>
             </nav>
             <div class="language-selector">
-                <a href="/en" class="language-switcher language-link">English</a>
+                <a href="/index.html" class="language-switcher language-link lang-switcher-en">English</a>
             </div>
-            <!-- Removed mobile menu toggle (three dashes/hamburger icon) -->
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
-
+    
     <section id="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>خليها على السحابة</h1>
-                <p>تحويل الأعمال من خلال حلول سحابية مبتكرة</p>
-                <a href="#services" class="btn">استكشف خدماتنا</a>
+            <div class="hero-content" style="text-align:right;">
+                <h1>نصنع الروابط، ندفع النمو</h1>
+                <p>نربط الأعمال بالعملاء، وندفع عجلة النمو</p>
+                <a href="#services" class="btn">اكتشف خدماتنا</a>
             </div>
         </div>
     </section>
-
     <section id="services">
         <div class="container">
             <h2>خدماتنا</h2>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" style="text-align:right;">
                     <h3>تأجير السيارات</h3>
-                    <p>نجعل التنقل أسهل من خلال ربط العملاء بخدمات تأجير السيارات الموثوقة. نحن نسد الفجوة بين مقدمي خدمات تأجير السيارات والعملاء، مما يضمن تجارب حجز سلسة وتقديم خدمة عالية الجودة.</p>
+                    <p>نجعل التنقل أسهل من خلال ربط العملاء بخدمات تأجير سيارات موثوقة. نحن نسد الفجوة بين مزودي خدمات تأجير السيارات والعملاء، مما يضمن تجارب حجز سلسة وجودة في تقديم الخدمة.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card" style="text-align:right;">
                     <h3>العقارات</h3>
-                    <p>سد الفجوة بين مالكي العقارات والمستثمرين والعملاء الذين يبحثون عن المساحات المناسبة. نحن نسهل الاتصالات التي تؤدي إلى معاملات عقارية ناجحة وفرص استثمارية.</p>
+                    <p>نسد الفجوة بين مالكي العقارات والمستثمرين والعملاء الباحثين عن المساحات المناسبة. نحن نسهل الاتصالات التي تؤدي إلى معاملات عقارية ناجحة وفرص استثمارية.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card" style="text-align:right;">
                     <h3>حلول التوظيف</h3>
-                    <p>مساعدة الأفراد في العثور على الوظائف المناسبة مع دعم الشركات في توظيف المواهب المناسبة. نحن ننشئ اتصالات هادفة بين الباحثين عن عمل وأصحاب العمل من أجل النجاح المتبادل.</p>
+                    <p>مساعدة الأفراد في العثور على الوظائف المناسبة مع دعم الشركات في توظيف الكفاءات الصحيحة. نحن ننشئ روابط ذات مغزى بين الباحثين عن عمل وأصحاب العمل لتحقيق النجاح المتبادل.</p>
                 </div>
             </div>
         </div>
@@ -164,56 +249,49 @@
 
     <section id="technologies">
         <div class="container">
-            <h2>التقنيات والأدوات التي نعمل بها</h2>
+            <h2>خدمات SaaS - قريباً</h2>
             <div class="tech-grid">
-                <div class="tech-card">
+                <div class="tech-card" style="text-align:center;">
                     <div class="tech-icon-wrapper">
                         <i class="fab fa-docker"></i>
                     </div>
-                    <h3 class="tech-name">Docker</h3>
-                    <p class="tech-description">منصة حاويات تتيح تشغيل التطبيقات بشكل متسق عبر البيئات المختلفة.</p>
+                    <h3 class="tech-name">الفواتير الذكية</h3>
+                    <p class="tech-description">أنشئ، أرسل، وتتبع الفواتير ببضع نقرات فقط. قل وداعاً للورق وقم بإدارة مدفوعاتك بكل سهولة.</p>
                 </div>
-                <div class="tech-card">
+                <div class="tech-card" style="text-align:center;">
                     <div class="tech-icon-wrapper">
-                        <img src="../images/ansible.png" alt="Ansible" class="tech-img">
+                        <img src="../images/Emporos-logo1.png" alt="Ansible" class="tech-img">
                     </div>
-                    <h3 class="tech-name">Ansible</h3>
-                    <p class="tech-description">أداة أتمتة لإدارة التهيئة ونشر التطبيقات وتنفيذ المهام تلقائيًا.</p>
+                    <h3 class="tech-name">إدارة علاقات العملاء (CRM) البسيطة</h3>
+                    <p class="tech-description">احتفظ بجميع عملائك في مكان واحد. تتبع العملاء المحتملين، وتابعهم بسهولة، ونمِ علاقات عملك.</p>
                 </div>
-                <div class="tech-card">
+                <div class="tech-card" style="text-align:center;">
                     <div class="tech-icon-wrapper">
-                        <img src="../images/terraform.png" alt="Terraform" class="tech-img">
+                        <img src="../images/Emporos-logo1.png" alt="Terraform" class="tech-img">
                     </div>
-                    <h3 class="tech-name">Terraform</h3>
-                    <p class="tech-description">أداة بنية تحتية كرمز لبناء وتغيير وإدارة البنية التحتية بأمان وكفاءة.</p>
+                    <h3 class="tech-name">جرد المخزون السهل</h3>
+                    <p class="tech-description">راقب مخزونك في الوقت الفعلي. احصل على تنبيهات عند انخفاض العناصر وتتبع منتجاتك الأكثر مبيعاً.</p>
                 </div>
-                <div class="tech-card">
+                <div class="tech-card" style="text-align:center;">
                     <div class="tech-icon-wrapper">
                         <i class="fab fa-github"></i>
                     </div>
-                    <h3 class="tech-name">Git & GitHub</h3>
-                    <p class="tech-description">منصة لإدارة الإصدارات والتعاون في مشاريع تطوير البرمجيات.</p>
+                    <h3 class="tech-name">نقطة البيع (POS)</h3>
+                    <p class="tech-description">نظام دفع سريع، بسيط، وموثوق. اطبع الإيصالات على الفور وقم بمزامنة المبيعات مع مخزونك.</p>
                 </div>
-                <div class="tech-card">
+                <div class="tech-card" style="text-align:center;">
                     <div class="tech-icon-wrapper">
-                        <img src="../images/kubernetes.png" alt="Kubernetes" class="tech-img">
+                        <img src="../images/Emporos-logo1.png" alt="Kubernetes" class="tech-img">
                     </div>
-                    <h3 class="tech-name">Kubernetes</h3>
-                    <p class="tech-description">نظام مفتوح المصدر لأتمتة نشر وإدارة التطبيقات الحاوية.</p>
+                    <h3 class="tech-name">الحجز عبر الإنترنت</h3>
+                    <p class="tech-description">دع عملاءك يحجزون المواعيد عبر الإنترنت في أي وقت. قم بإدارة الجداول الزمنية وإرسال التذكيرات تلقائياً.</p>
                 </div>
-                <div class="tech-card">
+                <div class="tech-card" style="text-align:center;">
                     <div class="tech-icon-wrapper">
                         <i class="fab fa-jenkins"></i>
                     </div>
-                    <h3 class="tech-name">Jenkins</h3>
-                    <p class="tech-description">خادم أتمتة لبناء واختبار ونشر البرمجيات بشكل مستمر.</p>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-icon-wrapper">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <h3 class="tech-name">GitHub Actions</h3>
-                    <p class="tech-description">أداة أتمتة سير العمل CI/CD مدمجة في GitHub لتسهيل عمليات البناء والاختبار والنشر.</p>
+                    <h3 class="tech-name">لوحة تحكم الأعمال</h3>
+                    <p class="tech-description">ابق على اطلاع بأرقامك. شاهد المبيعات والمصروفات ورؤى الأداء في لوحة تحكم واحدة بسيطة.</p>
                 </div>
             </div>
         </div>
@@ -221,94 +299,87 @@
     <div class="section-divider"></div>
     <section id="cloud-providers">
         <div class="container">
-            <h2 class="section-title">مزودو الخدمات السحابية الذين نعمل معهم</h2>
+            <h2 class="section-title">قيمنا الأساسية</h2>
             <div class="tech-grid">
-                <div class="tech-card">
+                <div class="tech-card" style="text-align:center;">
                     <div class="tech-icon-wrapper">
                         <i class="fab fa-aws"></i>
                     </div>
-                    <h3 class="tech-name">AWS</h3>
-                    <p class="tech-description">منصة سحابية رائدة تقدم أكثر من 200 خدمة كاملة من مراكز بيانات عالمية.</p>
+                    <h3 class="tech-name">الثقة والنزاهة</h3>
+                    <p class="tech-description">نبني علاقات دائمة من خلال الشفافية والموثوقية والالتزام بالممارسات الأخلاقية.</p>
                 </div>
-                <div class="tech-card">
+                <div class="tech-card" style="text-align:center;">
                     <div class="tech-icon-wrapper">
                         <i class="fab fa-microsoft"></i>
                     </div>
-                    <h3 class="tech-name">Azure</h3>
-                    <p class="tech-description">خدمة الحوسبة السحابية من مايكروسوفت لبناء واختبار ونشر وإدارة التطبيقات.</p>
+                    <h3 class="tech-name">الابتكار والنمو</h3>
+                    <p class="tech-description">نتطور باستمرار لخلق فرص جديدة تدفع التقدم للأعمال والمجتمعات.</p>
                 </div>
-                <div class="tech-card">
+                <div class="tech-card" style="text-align:center;">
                     <div class="tech-icon-wrapper">
                         <i class="fab fa-google"></i>
                     </div>
-                    <h3 class="tech-name">Google Cloud</h3>
-                    <p class="tech-description">مجموعة من خدمات الحوسبة السحابية تعمل على نفس البنية التحتية التي تستخدمها Google داخليًا.</p>
-                </div>
-                <div class="tech-card">
-                    <div class="tech-icon-wrapper">
-                        <img src="../images/alibaba.png" alt="Alibaba Cloud" class="tech-img">
-                    </div>
-                    <h3 class="tech-name">Alibaba Cloud</h3>
-                    <p class="tech-description">مجموعة شاملة من خدمات الحوسبة السحابية العالمية لدعم أعمالك.</p>
+                    <h3 class="tech-name">التميز المتمركز حول العميل</h3>
+                    <p class="tech-description">نعطي الأولوية لتقديم القيمة والرضا لضمان النجاح لكل من العملاء ومقدمي الخدمات.</p>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <section id="who-we-are">
         <div class="container">
             <h2>من نحن</h2>
-            <div class="who-we-are-content">
-                <p>إمبوروس هي شركة نمو مبيعات ديناميكية مكرسة لمساعدة الشركات في الوصول إلى عملائها وتوسيع فرصها. نحن ننشئ روابط قوية بين مقدمي الخدمات والعملاء من خلال بناء الثقة وتقديم القيمة وضمان النمو للجانبين.</p>
-                <p>نحن نعمل في ثلاثة قطاعات رئيسية: تأجير السيارات، والعقارات، وحلول التوظيف. في كل قطاع، نركز على إنشاء اتصالات هادفة تدفع نمو الأعمال ورضا العملاء.</p>
-                <p>إمبوروس ملتزمة بالنمو والابتكار والتميز في الخدمة. من خلال ربط الشركات مباشرة بعملائها، نحن نمكّن المجتمعات وننشئ مسارات للنجاح المستدام.</p>
-                <p>مهمتنا هي أن نكون الجسر الذي يربط الفرص بالأشخاص المناسبين، وتعزيز العلاقات التي تفيد جميع الأطراف المعنية وتساهم في النمو الاقتصادي في مجتمعاتنا.</p>
+            <div class="who-we-are-content" style="text-align:right;">
+                <p>إمبوروس هي شركة نمو مبيعات ديناميكية مكرسة لمساعدة الأعمال على الوصول إلى عملائها وتوسيع فرصها. ننشئ روابط قوية بين مزودي الخدمة والعملاء من خلال بناء الثقة، وتقديم القيمة، وضمان النمو لكلا الجانبين.</p>
+                <p>نعمل في ثلاثة قطاعات رئيسية: تأجير السيارات، العقارات، وحلول التوظيف. وفي كل قطاع، نركز على إنشاء روابط ذات مغزى تدفع نمو الأعمال ورضا العملاء.</p>
+                <p>تلتزم إمبوروس بالنمو والابتكار والتميز في الخدمة. من خلال ربط الأعمال مباشرة بعملائها، نحن نمكن المجتمعات ونخلق مسارات للنجاح المستدام.</p>
+                <p>مهمتنا هي أن نكون الجسر الذي يربط الفرص بالأشخاص المناسبين، مما يعزز العلاقات التي تفيد جميع الأطراف المعنية وتساهم في النمو الاقتصادي في مجتمعاتنا.</p>
             </div>
         </div>
     </section>
 
-
-    <section id="why-work-with-us">
-  <div class="container">
-    <h2>لماذا تعمل معنا</h2>
-    <div class="why-grid">
-      <div class="why-card">
-        <h3>1. بناء اتصالات مثبتة</h3>
-        <p>
-          نحن نتفوق في إنشاء اتصالات هادفة بين الشركات والعملاء. خبرتنا في بناء الثقة وتسهيل العلاقات تضمن نتائج ناجحة لجميع الأطراف المعنية.
-        </p>
-      </div>
-      <div class="why-card">
-        <h3>2. خبرة متعددة القطاعات</h3>
-        <p>
-          مع معرفة عميقة في تأجير السيارات والعقارات وحلول التوظيف، نحن نفهم التحديات والفرص الفريدة في كل قطاع، مما يمكننا من تقديم استراتيجيات نمو مخصصة.
-        </p>
-      </div>
-      <div class="why-card">
-        <h3>3. نهج مركز على النمو</h3>
-        <p>
-          نحن لا نكتفي بإنشاء الاتصالات – بل ندفع النمو. استراتيجياتنا مصممة لتوسيع قاعدة عملائك وزيادة الإيرادات وخلق فرص عمل مستدامة.
-        </p>
-      </div>
-      <div class="why-card">
-        <h3>4. قيمة لجميع الأطراف</h3>
-        <p>
-          نحن نضمن أن كل اتصال نسهله يقدم قيمة لمقدمي الخدمات والعملاء على حد سواء، مما يخلق مواقف مربحة للجميع تعزز العلاقات طويلة المدى والأعمال المتكررة.
-        </p>
-      </div>
+    
+<section id="why-work-with-us">
+    <div class="container">
+        <h2>لماذا العمل معنا</h2>
+        <div class="why-grid">
+            <div class="why-card" style="text-align:right;">
+                <h3>1. مثبتون في بناء الروابط</h3>
+                <p>
+                    نحن نتميز في إنشاء روابط ذات مغزى بين الأعمال والعملاء. خبرتنا في بناء الثقة وتسهيل العلاقات تضمن نتائج ناجحة لجميع الأطراف المعنية.
+                </p>
+            </div>
+            <div class="why-card" style="text-align:right;">
+                <h3>2. خبرة متعددة القطاعات</h3>
+                <p>
+                    بفضل المعرفة العميقة في قطاعات تأجير السيارات، والعقارات، وحلول التوظيف، نفهم التحديات والفرص الفريدة في كل قطاع، مما يمكننا من تقديم استراتيجيات نمو مصممة خصيصاً.
+                </p>
+            </div>
+            <div class="why-card" style="text-align:right;">
+                <h3>3. نهج يركز على النمو</h3>
+                <p>
+                    نحن لا نكتفي بإجراء الاتصالات فحسب - بل ندفع النمو. تم تصميم استراتيجياتنا لتوسيع قاعدة عملائك، وزيادة الإيرادات، وخلق فرص عمل مستدامة.
+                </p>
+            </div>
+            <div class="why-card" style="text-align:right;">
+                <h3>4. قيمة لجميع الأطراف</h3>
+                <p>
+                    نضمن أن كل رابط نسهله يقدم قيمة لكل من مزودي الخدمة والعملاء، مما يخلق مواقف مربحة للجميع تعزز العلاقات طويلة الأمد وتكرار الأعمال.
+                </p>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
     <section id="contact">
         <div class="container">
             <h2>تواصل معنا</h2>
-            <div class="contact-buttons" style="display: flex; justify-content: center; gap: 30px; margin-top: 40px;">
-                <a href="https://wa.me/966581061426" target="_blank" class="contact-btn whatsapp-btn external-link" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 8px; background: linear-gradient(90deg, #25D366 60%, #128C7E 100%); color: #fff; font-size: 1.2rem; font-weight: 600; box-shadow: 0 4px 24px rgba(37,211,102,0.15); transition: transform 0.2s, box-shadow 0.2s; animation: float 2.5s infinite; text-decoration: none;">
+            <div class="contact-buttons" style="display: flex; justify-content: center; gap: 30px; margin-top: 40px; direction: ltr;"> <a href="https://wa.me/971525834426" target="_blank" class="contact-btn whatsapp-btn external-link" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 8px; background: linear-gradient(90deg, #25D366 60%, #128C7E 100%); color: #fff; font-size: 1.2rem; font-weight: 600; box-shadow: 0 4px 24px rgba(37,211,102,0.15); transition: transform 0.2s, box-shadow 0.2s; animation: float 2.5s infinite; text-decoration: none;">
                     <i class="fab fa-whatsapp" style="font-size: 1.5em;"></i>
                     واتساب
                 </a>
-                <a href="mailto:team@lunixa.sa" target="_blank" class="contact-btn email-btn external-link" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 8px; background: linear-gradient(90deg, #0072C6 60%, #005999 100%); color: #fff; font-size: 1.2rem; font-weight: 600; box-shadow: 0 4px 24px rgba(0,114,198,0.15); transition: transform 0.2s, box-shadow 0.2s; animation: float 2.5s 0.5s infinite; text-decoration: none;">
+                <a href="mailto:emporos2025@gmail.com
+" target="_blank" class="contact-btn email-btn external-link" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 12px; padding: 18px 36px; border-radius: 8px; background: linear-gradient(90deg, #0072C6 60%, #005999 100%); color: #fff; font-size: 1.2rem; font-weight: 600; box-shadow: 0 4px 24px rgba(0,114,198,0.15); transition: transform 0.2s, box-shadow 0.2s; animation: float 2.5s 0.5s infinite; text-decoration: none;">
                     <i class="fas fa-envelope" style="font-size: 1.5em;"></i>
                     البريد الإلكتروني
                 </a>
@@ -318,66 +389,136 @@
 
     <footer>
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-content" style="text-align:right;">
                 <div class="footer-logo">
                     <div class="logo-container footer-logo-container">
-                        <img src="../images/logo2.png" alt="LCS Logo" class="logo-img">
+                        <img src="../images/Emporos-logo1.png" alt="شعار إمبوروس" class="logo-img">
                         <div class="header-content">
                             <div class="company-names">
                                 <div class="company-name arabic">
-                                    <span>لونيكسا</span>
-                                    <span>للحلول</span>
-                                    <span>السحابية</span>
+                                    <span>إمبوروس</span>
+                                    <span>وساطة</span>
+                                    <span>نمو</span>
                                 </div>
-                                <div class="company-name">
-                                    <span>Lunixa</span>
-                                    <span>Cloud</span>
-                                    <span>Solutions</span>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
-                    <p class="tagline">حافظ على سحابتك مع LCS</p>
-                    <p class="footer-description">شريكك الموثوق للحلول السحابية المبتكرة في الرياض، المملكة العربية السعودية وخارجها.</p>
+                    <p class="tagline">إمبوروس وساطة، دافعة للنمو</p>
+                    <p class="footer-description">شريكك الموثوق لربط شركتك بالعملاء، ودفع عجلة النمو.</p>
                 </div>
                 <div class="footer-links">
                     <h3>روابط سريعة</h3>
                     <ul>
                         <li><a href="#hero">الرئيسية</a></li>
-                        <li><a href="#services">الخدمات</a></li>
+                        <li><a href="#services">خدماتنا</a></li>
                         <li><a href="#technologies">التقنيات والأدوات</a></li>
-                        <li><a href="#cloud-providers">مزودو السحابة</a></li>
                         <li><a href="#who-we-are">من نحن</a></li>
-                        <li><a href="#why-work-with-us">لماذا نحن</a></li>
+                        <li><a href="#why-work-with-us">لماذا العمل معنا</a></li>
                         <li><a href="#contact">تواصل معنا</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
                     <h3>معلومات الاتصال</h3>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
-                        <li><i class="fas fa-phone"></i> ٠٥٨١٠٦١٤٢٦ </li>
-                        <li><i class="fas fa-envelope"></i> team@lunixa.sa </li>
+                        <li><i class="fas fa-map-marker-alt"></i> رواندا، كيغالي</li>
+                        <li><i class="fas fa-phone"></i> +250 795708704 </li>
+                        <li><i class="fas fa-envelope"></i> emporos2025@gmail.com </li>
                     </ul>
                 </div>
                 <div class="footer-social">
                     <h3>تواصل معنا</h3>
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/company/lunixacloud" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://x.com/lunixacloud" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fab fa-x"></i></a>
-                        <a href="https://www.instagram.com/lunixacloud/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fab fa-instagram"></i></a>
+                    <div class="footer-social">
+                        <div class="social-icons">
+                        <a href="https://www.instagram.com/emporos.25/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="external-link"><i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
-                </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 لونيكسا للحلول السحابية. جميع الحقوق محفوظة.</p>
+                <p>&copy; 2025 إمبوروس. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
 
-    <!-- SCS Loading Overlay (Arabic, same as EN version) -->
-    <!-- Loading overlay and related functionality removed -->
+    <script src="../js/script.js"></script>
+    <script>
+// Spinner for all images (including PNGs)
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(function(img) {
+        // Skip if already wrapped
+        if (img.parentElement && img.parentElement.classList.contains('img-wrapper')) return;
+        // Create wrapper
+        var wrapper = document.createElement('div');
+        wrapper.className = 'img-wrapper';
+        img.parentNode.insertBefore(wrapper, img);
+        wrapper.appendChild(img);
+        // Create spinner
+        var spinner = document.createElement('div');
+        spinner.className = 'img-spinner';
+        spinner.innerHTML = '<div class="spinner"></div>';
+        wrapper.appendChild(spinner);
+        // Show spinner by default
+        spinner.style.display = 'flex';
+        // Hide spinner on load
+        img.addEventListener('load', function() {
+            img.classList.add('img-loaded');
+            spinner.style.display = 'none';
+        });
+        // Show error icon on error
+        img.addEventListener('error', function() {
+            spinner.innerHTML = '<span style="color:red;font-size:1.5em;">⚠</span>';
+            spinner.style.display = 'flex';
+        });
+        // If already loaded (from cache)
+        if (img.complete && img.naturalWidth !== 0) {
+            img.classList.add('img-loaded');
+            spinner.style.display = 'none';
+        }
+    });
+});
 
-</script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Scroll to top functionality
+    document.querySelectorAll('.home-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+    const logoContainer = document.getElementById('logo-container');
+    if (logoContainer) {
+        logoContainer.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // 1. Logic for switching TO Arabic (Only for the English file)
+    const arabicSwitcher = document.querySelector('.lang-switcher-ar');
+    if (arabicSwitcher) {
+        arabicSwitcher.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            sessionStorage.setItem('language-switch', 'true'); 
+            window.location.href = arabicSwitcher.getAttribute('href'); 
+        });
+    }
+
+    // 2. Logic for switching TO English (Active in this Arabic file)
+    const englishSwitcher = document.querySelector('.lang-switcher-en');
+    if (englishSwitcher) {
+        englishSwitcher.addEventListener('click', function(e) {
+            e.preventDefault(); // Stop the default navigation
+            sessionStorage.setItem('language-switch', 'true'); // Set the flag
+            window.location.href = englishSwitcher.getAttribute('href'); // Navigate
+        });
+    }
+
+    // Existing logic in your <script> block already handles showing the page:
+    if (sessionStorage.getItem('language-switch') === 'true') {
+        document.documentElement.style.visibility = 'visible';
+        sessionStorage.removeItem('language-switch');
+    }
+});
+    </script>
+    
 </body>
 </html>
