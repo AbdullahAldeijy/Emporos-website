@@ -1,0 +1,26 @@
+# Fixed deployment commands with Gunicorn and proper logging
+
+# 1. Rebuild the Docker image with Gunicorn and logging
+docker build -t emporos-website .
+
+# 2. Tag for Artifact Registry (using your actual registry path)
+docker tag emporos-website us-central1-docker.pkg.dev/emporos-473418/my-docker-repo/emporos-service:latest
+
+# 3. Configure Docker for Artifact Registry
+gcloud auth configure-docker us-central1-docker.pkg.dev
+
+# 4. Push the updated image
+docker push us-central1-docker.pkg.dev/emporos-473418/my-docker-repo/emporos-service:latest
+
+# 5. Deploy to Cloud Run with increased timeout
+gcloud run deploy my-cloud-run-service \
+  --image us-central1-docker.pkg.dev/emporos-473418/my-docker-repo/emporos-service:latest \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --timeout 300 \
+  --memory 512Mi \
+  --cpu 1
+
+# 6. Check logs if it fails
+# gcloud logs read --service my-cloud-run-service --region us-central1

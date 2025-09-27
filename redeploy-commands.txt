@@ -1,0 +1,27 @@
+# Fixed deployment commands for Cloud Run
+
+# 1. Rebuild the Docker image with the fixed port configuration
+docker build -t emporos-website .
+
+# 2. Tag for Google Container Registry
+docker tag emporos-website gcr.io/[YOUR-PROJECT-ID]/emporos-website:latest
+
+# 3. Push the updated image
+docker push gcr.io/[YOUR-PROJECT-ID]/emporos-website:latest
+
+# 4. Deploy to Cloud Run (no need to specify port, it will use PORT env var)
+gcloud run deploy emporos-website \
+  --image gcr.io/[YOUR-PROJECT-ID]/emporos-website:latest \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated
+
+# Alternative with more configuration:
+# gcloud run deploy emporos-website \
+#   --image gcr.io/[YOUR-PROJECT-ID]/emporos-website:latest \
+#   --platform managed \
+#   --region us-central1 \
+#   --allow-unauthenticated \
+#   --memory 512Mi \
+#   --cpu 1 \
+#   --max-instances 10

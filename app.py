@@ -1,6 +1,10 @@
 from flask import Flask, send_from_directory, redirect
 import os
+import logging
 
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
@@ -69,4 +73,7 @@ def serve_global_static(filename):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    logger.info(f"Starting Flask app on port {port}")
+    logger.info(f"Environment PORT: {os.environ.get('PORT', 'Not set')}")
+    app.run(debug=False, host='0.0.0.0', port=port, threaded=True)

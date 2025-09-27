@@ -1,0 +1,45 @@
+# Google Cloud Run Deployment Commands for Emporos Website
+
+# Prerequisites:
+# 1. Install Google Cloud CLI: https://cloud.google.com/sdk/docs/install
+# 2. Create a Google Cloud Project
+# 3. Enable Cloud Run API and Container Registry API
+
+# 1. Initialize gcloud and login
+gcloud auth login
+gcloud config set project [YOUR-PROJECT-ID]
+
+# 2. Enable required APIs
+gcloud services enable run.googleapis.com
+gcloud services enable containerregistry.googleapis.com
+
+# 3. Build and tag your Docker image for Google Container Registry
+docker build -t emporos-website .
+docker tag emporos-website gcr.io/[YOUR-PROJECT-ID]/emporos-website:latest
+
+# 4. Configure Docker to use gcloud as credential helper
+gcloud auth configure-docker
+
+# 5. Push image to Google Container Registry
+docker push gcr.io/[YOUR-PROJECT-ID]/emporos-website:latest
+
+# 6. Deploy to Cloud Run
+gcloud run deploy emporos-website \
+  --image gcr.io/[YOUR-PROJECT-ID]/emporos-website:latest \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --port 5000
+
+# Alternative: Deploy with custom domain (optional)
+# gcloud run deploy emporos-website \
+#   --image gcr.io/[YOUR-PROJECT-ID]/emporos-website:latest \
+#   --platform managed \
+#   --region us-central1 \
+#   --allow-unauthenticated \
+#   --port 5000 \
+#   --memory 512Mi \
+#   --cpu 1
+
+# 7. Get the service URL
+gcloud run services describe emporos-website --region us-central1 --format 'value(status.url)'

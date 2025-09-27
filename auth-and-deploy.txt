@@ -1,0 +1,21 @@
+# Authentication and deployment commands
+
+# 1. Configure Docker authentication for Artifact Registry
+gcloud auth configure-docker us-central1-docker.pkg.dev
+
+# 2. Push the image (after authentication)
+docker push us-central1-docker.pkg.dev/emporos-473418/my-docker-repo/emporos-service:latest
+
+# 3. Deploy to Cloud Run
+gcloud run deploy my-cloud-run-service \
+  --image us-central1-docker.pkg.dev/emporos-473418/my-docker-repo/emporos-service:latest \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --timeout 300 \
+  --memory 512Mi \
+  --cpu 1
+
+# If authentication still fails, try:
+# gcloud auth login
+# gcloud config set project emporos-473418

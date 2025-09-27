@@ -1,0 +1,23 @@
+# Alibaba Cloud Container Registry Deployment Commands
+
+# 1. Build your Docker image
+docker build -t emporos-website .
+
+# 2. Tag your image for Alibaba Cloud Registry
+# Replace [region] with your region (e.g., us-west-1, ap-southeast-1)
+# Replace [namespace] with your namespace
+# Replace [repository] with your repository name
+docker tag emporos-website registry.[region].aliyuncs.com/[namespace]/emporos-website:latest
+
+# Example:
+# docker tag emporos-website registry.us-west-1.aliyuncs.com/emporos/emporos-website:latest
+
+# 3. Login to Alibaba Cloud Registry
+# Get login command from Container Registry console
+docker login --username=[your-username] registry.[region].aliyuncs.com
+
+# 4. Push image to registry
+docker push registry.[region].aliyuncs.com/[namespace]/emporos-website:latest
+
+# 5. Deploy using Container Service (optional)
+# Use the pushed image in ECS, ECI, or Kubernetes

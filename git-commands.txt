@@ -1,0 +1,26 @@
+# Git commands to push changes to GitHub
+
+# 1. Check current status
+git status
+
+# 2. Add all changes
+git add .
+
+# 3. Commit with descriptive message
+git commit -m "Update Emporos website: Cloud Run deployment fixes and content updates
+
+- Fixed Flask app to use PORT environment variable for Cloud Run
+- Updated Dockerfile to use Gunicorn for better production performance
+- Updated content to reflect Emporos as sales growth company
+- Added bilingual support (English/Arabic)
+- Fixed language switcher links for Cloud Run deployment
+- Updated services: Car Rentals, Real Estate, Employment Solutions
+- Updated contact information and branding"
+
+# 4. Push to GitHub
+git push origin main
+
+# If you haven't set up the remote repository yet:
+# git remote add origin https://github.com/yourusername/emporos-website.git
+# git branch -M main
+# git push -u origin main
