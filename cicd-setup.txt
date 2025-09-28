@@ -1,0 +1,17 @@
+# CI/CD Setup Options for Automatic Deployment
+
+## Option 1: GitHub Actions (Recommended)
+# Create .github/workflows/deploy.yml in your repo
+
+## Option 2: Google Cloud Build
+# Automatically builds and deploys when you push to GitHub
+
+## Option 3: Manual Process
+# Your teammate runs these commands after making changes:
+# 1. git push origin main
+# 2. docker build -t emporos-website .
+# 3. docker tag emporos-website us-central1-docker.pkg.dev/emporos-473418/my-docker-repo/emporos-service:latest
+# 4. docker push us-central1-docker.pkg.dev/emporos-473418/my-docker-repo/emporos-service:latest
+# 5. gcloud run deploy my-cloud-run-service --image us-central1-docker.pkg.dev/emporos-473418/my-docker-repo/emporos-service:latest --region us-central1
+
+## Recommended: GitHub Actions (Fully Automated)

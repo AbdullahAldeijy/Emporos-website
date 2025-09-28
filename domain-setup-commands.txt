@@ -1,0 +1,27 @@
+# Custom Domain Setup for Cloud Run
+
+# 1. Map your domain to Cloud Run service
+gcloud run domain-mappings create \
+  --service my-cloud-run-service \
+  --domain your-domain.com \
+  --region us-central1
+
+# 2. For subdomain (optional)
+gcloud run domain-mappings create \
+  --service my-cloud-run-service \
+  --domain www.your-domain.com \
+  --region us-central1
+
+# 3. Get DNS records to configure
+gcloud run domain-mappings describe \
+  --domain your-domain.com \
+  --region us-central1
+
+# 4. List all domain mappings
+gcloud run domain-mappings list --region us-central1
+
+# Example for emporos.com:
+# gcloud run domain-mappings create \
+#   --service my-cloud-run-service \
+#   --domain emporos.com \
+#   --region us-central1

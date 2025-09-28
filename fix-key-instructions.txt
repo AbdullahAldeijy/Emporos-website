@@ -1,0 +1,19 @@
+# Fix GitHub Secret Key Instructions
+
+## The issue: JSON formatting problem in GitHub secret
+
+## Solution: Create a new clean key
+
+# 1. Delete the old key and create a new one
+gcloud iam service-accounts keys delete 3a43f2e5da8df254831b863040e66e269b498d49 --iam-account=github-actions@emporos-473418.iam.gserviceaccount.com
+
+# 2. Create a new key
+gcloud iam service-accounts keys create clean-key.json --iam-account=github-actions@emporos-473418.iam.gserviceaccount.com
+
+# 3. Copy the content properly to GitHub secret
+# Make sure to copy the ENTIRE JSON content without any formatting issues
+
+## Alternative: Use base64 encoding
+# If JSON still has issues, encode it:
+# certutil -encode clean-key.json clean-key-base64.txt
+# Then use the base64 content in GitHub secret
